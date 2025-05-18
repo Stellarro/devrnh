@@ -1,11 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import './styles/index.css';
-import './index.css';
+import React, { useState } from "react";
+import ReactDOM from "react-dom/client";
+import Login from "./Login";
+import App from "./App";
+import "./index.css"; 
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+function Root() {
+  const [user, setUser] = useState(null);
+
+  if (!user) {
+    return <Login onLogin={setUser} />;
+  }
+
+  return <App user={user} />;
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<Root />);
